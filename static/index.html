@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="description" content="Biomni — Stanford Biomedical AI Agent with PubMed, clinical trials, and web search capabilities." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Biomni" />
+  <title>Biomni — Biomedical AI Agent</title>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
+        <div class="logo-mark">B</div>
+        <div class="brand-text">
+          <h1>Biomni</h1>
+          <span class="brand-sub">Stanford Biomedical AI Agent</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-theme" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
+          <i class="ph ph-sun"></i>
+        </button>
+        <button id="btn-clear" class="icon-btn" title="New conversation" aria-label="New conversation">
+          <i class="ph ph-plus"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat area -->
+    <main class="chat-area" id="chat-area">
+      <div class="welcome" id="welcome">
+        <div class="welcome-logo">B</div>
+        <h2>Biomni</h2>
+        <p>Biomedical AI agent with access to PubMed, clinical trials, and web search. Ask about drugs, mechanisms, trials, or clinical cases.</p>
+        <div class="presets" id="presets">
+          <button class="preset-btn" data-query="What are the current first-line treatment options for HER2-negative gastric adenocarcinoma with high PD-L1 CPS?">
+            <strong>Treatment options</strong><br/>
+            HER2- gastric ca, high PD-L1
+          </button>
+          <button class="preset-btn" data-query="Search for active clinical trials for CLDN18.2-positive gastric cancer in Europe">
+            <strong>Clinical trials</strong><br/>
+            CLDN18.2+ gastric, Europe
+          </button>
+          <button class="preset-btn" data-query="What is the mechanism of action of zolbetuximab and what were the key results from SPOTLIGHT and GLOW trials?">
+            <strong>Drug mechanism</strong><br/>
+            Zolbetuximab MOA + trials
+          </button>
+          <button class="preset-btn" data-query="Compare FOLFOX vs CAPOX in advanced gastric cancer — efficacy, toxicity, and patient selection criteria">
+            <strong>Regimen comparison</strong><br/>
+            FOLFOX vs CAPOX
+          </button>
+        </div>
+      </div>
+
+      <div class="messages" id="messages"></div>
+    </main>
+
+    <!-- Input area -->
+    <div class="input-area">
+      <form id="chat-form" class="chat-form" autocomplete="off">
+        <div class="input-wrap">
+          <textarea
+            id="chat-input"
+            placeholder="Ask Biomni anything biomedical..."
+            rows="1"
+            autofocus
+          ></textarea>
+          <button type="submit" class="send-btn" id="btn-send" title="Send" aria-label="Send message">
+            <i class="ph ph-paper-plane-tilt"></i>
+          </button>
+        </div>
+        <div class="input-footer">
+          <span class="status" id="status"></span>
+          <span class="model-tag">Stanford Biomni + Claude</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

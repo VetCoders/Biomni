@@ -1387,6 +1387,9 @@ Each library is listed with its description to help you understand its functiona
                 system_prompt += "\n\nIMPORTANT FOR GPT MODELS: You MUST use XML tags <execute> or <solution> in EVERY response. Do not use markdown code blocks (```) - use <execute> tags instead."
 
             messages = [SystemMessage(content=system_prompt)] + state["messages"]
+            # Claude 4.x doesn't support assistant prefill — ensure last msg is user/human
+            if messages and isinstance(messages[-1], AIMessage):
+                messages.append(HumanMessage(content="Continue."))
             response = self.llm.invoke(messages)
 
             # Normalize Responses API content blocks (list of dicts) into a plain string

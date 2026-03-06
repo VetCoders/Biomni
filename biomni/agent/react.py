@@ -8,7 +8,7 @@ from functools import wraps
 from multiprocessing import Process, Queue
 from typing import Annotated, TypedDict
 
-from langchain_core.messages import BaseMessage, SystemMessage, ToolMessage
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, StateGraph
@@ -278,6 +278,10 @@ Here is the list of available libraries with their descriptions:
             """Node that calls the language model to get the next action."""
             system_message = SystemMessage(content=self.system_prompt)
             messages = [system_message] + state["messages"]
+            # Claude 4.x models don't support assistant prefill —
+            # ensure conversation ends with a user/human message.
+            if messages and isinstance(messages[-1], AIMessage):
+                messages.append(HumanMessage(content="Continue."))
             response = llm_with_tools.invoke(messages, config=config)
             return {"messages": [response]}
 

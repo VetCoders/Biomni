@@ -1,0 +1,14 @@
+services:
+  portal:
+    build: .
+    container_name: biomni-portal
+    restart: unless-stopped
+    ports:
+      - "8129:8129"
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8129/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
