@@ -9,81 +9,178 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Biomni" />
   <title>Biomni — Biomedical AI Agent</title>
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" crossorigin="anonymous" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <div class="shell">
-    <!-- Header -->
-    <header class="header">
-      <div class="header-brand">
-        <div class="logo-mark">B</div>
-        <div class="brand-text">
-          <h1>Biomni</h1>
-          <span class="brand-sub">Stanford Biomedical AI Agent</span>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Conversations">
+      <div class="sidebar-header">
+        <div class="sidebar-title">
+          <i class="ph ph-chats-circle"></i>
+          <span>Conversations</span>
         </div>
-      </div>
-      <div class="header-actions">
-        <button id="btn-theme" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
-          <i class="ph ph-sun"></i>
-        </button>
-        <button id="btn-clear" class="icon-btn" title="New conversation" aria-label="New conversation">
-          <i class="ph ph-plus"></i>
+        <button id="btn-sidebar-collapse" class="icon-btn" title="Collapse sidebar" aria-label="Collapse sidebar">
+          <i class="ph ph-sidebar-simple"></i>
         </button>
       </div>
-    </header>
 
-    <!-- Chat area -->
-    <main class="chat-area" id="chat-area">
-      <div class="welcome" id="welcome">
-        <div class="welcome-logo">B</div>
-        <h2>Biomni</h2>
-        <p>Biomedical AI agent with access to PubMed, clinical trials, and web search. Ask about drugs, mechanisms, trials, or clinical cases.</p>
-        <div class="presets" id="presets">
-          <button class="preset-btn" data-query="What are the current first-line treatment options for HER2-negative gastric adenocarcinoma with high PD-L1 CPS?">
-            <strong>Treatment options</strong><br/>
-            HER2- gastric ca, high PD-L1
-          </button>
-          <button class="preset-btn" data-query="Search for active clinical trials for CLDN18.2-positive gastric cancer in Europe">
-            <strong>Clinical trials</strong><br/>
-            CLDN18.2+ gastric, Europe
-          </button>
-          <button class="preset-btn" data-query="What is the mechanism of action of zolbetuximab and what were the key results from SPOTLIGHT and GLOW trials?">
-            <strong>Drug mechanism</strong><br/>
-            Zolbetuximab MOA + trials
-          </button>
-          <button class="preset-btn" data-query="Compare FOLFOX vs CAPOX in advanced gastric cancer — efficacy, toxicity, and patient selection criteria">
-            <strong>Regimen comparison</strong><br/>
-            FOLFOX vs CAPOX
-          </button>
-        </div>
+      <div class="sidebar-search-wrap">
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <input id="conversation-search" type="search" placeholder="Search conversations" autocomplete="off" />
       </div>
 
-      <div class="messages" id="messages"></div>
-    </main>
+      <button id="btn-new-chat" class="new-chat-btn" type="button">
+        <i class="ph ph-plus"></i>
+        <span>New chat</span>
+      </button>
 
-    <!-- Input area -->
-    <div class="input-area">
-      <form id="chat-form" class="chat-form" autocomplete="off">
-        <div class="input-wrap">
-          <textarea
-            id="chat-input"
-            placeholder="Ask Biomni anything biomedical..."
-            rows="1"
-            autofocus
-          ></textarea>
-          <button type="submit" class="send-btn" id="btn-send" title="Send" aria-label="Send message">
-            <i class="ph ph-paper-plane-tilt"></i>
+      <div class="conversation-list" id="conversation-list"></div>
+    </aside>
+
+    <button class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close sidebar" type="button"></button>
+
+    <div class="shell">
+      <header class="header">
+        <div class="header-brand">
+          <button id="btn-sidebar-toggle" class="icon-btn sidebar-toggle" title="Toggle sidebar" aria-label="Toggle sidebar">
+            <i class="ph ph-list"></i>
+          </button>
+          <div class="logo-mark">B</div>
+          <div class="brand-text">
+            <h1>Biomni</h1>
+            <span class="brand-sub">Stanford Biomedical AI Agent</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <span class="user-display" id="user-display">Guest</span>
+          <button id="btn-export" class="icon-btn" title="Export conversation" aria-label="Export conversation">
+            <i class="ph ph-download-simple"></i>
+          </button>
+          <button id="btn-share" class="icon-btn" title="Share conversation" aria-label="Share conversation">
+            <i class="ph ph-share-network"></i>
+          </button>
+          <button id="btn-theme" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
+            <i class="ph ph-sun"></i>
+          </button>
+          <button id="btn-logout" class="icon-btn" title="Logout" aria-label="Logout">
+            <i class="ph ph-sign-out"></i>
           </button>
         </div>
-        <div class="input-footer">
-          <span class="status" id="status"></span>
-          <span class="model-tag">Stanford Biomni + Claude</span>
+      </header>
+
+      <main class="chat-area" id="chat-area">
+        <div class="welcome" id="welcome">
+          <div class="welcome-logo">B</div>
+          <h2>Biomni</h2>
+          <p>Biomedical AI agent with access to PubMed, clinical trials, and web search. Ask about drugs, mechanisms, trials, or clinical cases.</p>
+          <div class="presets" id="presets">
+            <button class="preset-btn" data-query="Search PubMed for CRISPR-Cas9 delivery methods in vivo">
+              <strong>CRISPR delivery</strong><br/>
+              In vivo methods from PubMed
+            </button>
+            <button class="preset-btn" data-query="What are the ADMET properties of remdesivir?">
+              <strong>ADMET profiling</strong><br/>
+              Remdesivir pharmacokinetics
+            </button>
+            <button class="preset-btn" data-query="Find active clinical trials for CAR-T therapy in B-ALL">
+              <strong>Clinical trials</strong><br/>
+              CAR-T for B-ALL
+            </button>
+            <button class="preset-btn" data-query="Explain the mechanism of immune checkpoint inhibitors">
+              <strong>Immunotherapy MOA</strong><br/>
+              Checkpoint inhibitors explained
+            </button>
+          </div>
+          <section class="capabilities" id="capabilities">
+            <h3>Portal Capabilities</h3>
+            <div class="capabilities-grid" id="capabilities-grid" aria-live="polite">
+              <div class="capability-card">
+                <i class="ph ph-spinner-gap capability-icon"></i>
+                <span>Loading tools...</span>
+              </div>
+            </div>
+          </section>
         </div>
+
+        <div class="messages" id="messages"></div>
+      </main>
+
+      <div class="input-area">
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <div class="input-wrap">
+            <textarea
+              id="chat-input"
+              placeholder="Ask Biomni anything biomedical..."
+              rows="1"
+            ></textarea>
+            <button type="submit" class="send-btn" id="btn-send" title="Send" aria-label="Send message">
+              <i class="ph ph-paper-plane-tilt"></i>
+            </button>
+          </div>
+          <div class="input-footer">
+            <span class="status" id="status"></span>
+            <span class="model-tag">Stanford Biomni + Claude</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-modal hidden" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <button id="auth-close" class="icon-btn auth-close hidden" type="button" aria-label="Close authentication dialog">
+        <i class="ph ph-x"></i>
+      </button>
+
+      <div class="auth-head">
+        <h2 id="auth-title">Welcome to Biomni</h2>
+        <p>Sign in to keep your biomedical conversations and tool traces synchronized.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Authentication">
+        <button id="auth-tab-login" class="auth-tab active" type="button" role="tab" aria-selected="true">Login</button>
+        <button id="auth-tab-register" class="auth-tab" type="button" role="tab" aria-selected="false">Register</button>
+      </div>
+
+      <p id="auth-error" class="auth-error hidden" role="alert"></p>
+
+      <form id="login-form" class="auth-form active" autocomplete="on">
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required autocomplete="current-password" minlength="6" />
+        </label>
+        <button class="auth-submit" type="submit">Login</button>
+      </form>
+
+      <form id="register-form" class="auth-form" autocomplete="on">
+        <label>
+          <span>Display name</span>
+          <input type="text" name="display_name" required minlength="2" maxlength="64" autocomplete="name" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required autocomplete="new-password" minlength="6" />
+        </label>
+        <button class="auth-submit" type="submit">Create account</button>
       </form>
     </div>
   </div>
 
-  <script type="module" src="/app.js"></script>
+  <script type="module" src="/js/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,32 @@
+# Core
 fastapi>=0.115
 uvicorn[standard]>=0.34
 httpx>=0.28
 python-dotenv>=1.1
+
+# Auth
+python-jose[cryptography]>=3.3
+passlib[bcrypt]>=1.7
+bcrypt>=4.0,<5
+
+# Database
+aiosqlite>=0.20
+aiofiles>=24.1
+
+# Biomni agent deps (from biomni's pyproject.toml)
+pydantic>=2.0
+langchain>=0.3
+langchain-core>=0.3
+langchain-anthropic>=0.3
+langchain-openai>=0.3
+langgraph>=0.2
+pandas>=2.0
+
+# Biomni tool deps
+requests>=2.32
+beautifulsoup4>=4.12
+PyPDF2>=3.0
+pymed>=0.8
+arxiv>=2.0
+scholarly>=1.7
+googlesearch-python>=1.2

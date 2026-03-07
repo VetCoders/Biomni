@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shared Biomni conversation (read-only)." />
+  <title>Shared Biomni Conversation</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="shared-page">
+  <main class="shared-shell">
+    <header class="shared-header">
+      <div class="shared-brand">
+        <div class="logo-mark">B</div>
+        <div>
+          <h1>Shared Biomni Conversation</h1>
+          <p>Read-only scientific discussion snapshot</p>
+        </div>
+      </div>
+      <a class="shared-home-link" href="/">
+        <i class="ph ph-arrow-left"></i>
+        Open Biomni
+      </a>
+    </header>
+
+    <section class="shared-meta" id="shared-meta"></section>
+    <p class="shared-status" id="shared-status">Loading shared conversation...</p>
+    <section class="messages shared-messages" id="shared-messages"></section>
+  </main>
+
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+    const statusEl = $("shared-status");
+    const metaEl = $("shared-meta");
+    const messagesEl = $("shared-messages");
+
+    function fallbackRenderMarkdown(text) {
+      if (!text) return "";
+      let html = String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_, _lang, code) => `<pre><code>${code.trim()}</code></pre>`);
+      html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+      html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      html = html.replace(/\*(.+?)\*/g, "<em>$1</em>");
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      html = html.replace(/\n{2,}/g, "</p><p>");
+      html = `<p>${html}</p>`;
+      return html.replace(/<p>\s*<\/p>/g, "");
+    }
+
+    async function loadMarkdownRenderer() {
+      try {
+        const mod = await import("/js/markdown.js");
+        if (typeof mod.renderMarkdown === "function") return mod.renderMarkdown;
+        if (typeof mod.default === "function") return mod.default;
+      } catch {
+        // Fallback to local renderer when shared markdown module is unavailable.
+      }
+      return fallbackRenderMarkdown;
+    }
+
+    function getTokenFromUrl() {
+      const path = window.location.pathname.replace(/\/+$/, "");
+      const match = path.match(/\/shared\/([^/]+)$/);
+      if (match && match[1]) return decodeURIComponent(match[1]);
+
+      const searchToken = new URLSearchParams(window.location.search).get("token");
+      return searchToken ? searchToken.trim() : "";
+    }
+
+    function normalizePayloadMessages(payload) {
+      if (!payload) return [];
+      if (Array.isArray(payload.messages)) return payload.messages;
+      if (payload.conversation && Array.isArray(payload.conversation.messages)) return payload.conversation.messages;
+      if (Array.isArray(payload.conversation)) return payload.conversation;
+      if (Array.isArray(payload)) return payload;
+      return [];
+    }
+
+    function normalizePayloadMeta(payload) {
+      const source = payload && payload.conversation ? payload.conversation : payload || {};
+      return {
+        title: source.title || "Biomni shared conversation",
+        sharedBy: source.user || source.owner || payload.user || "unknown",
+        sharedAt: source.shared_at || source.created_at || payload.shared_at || payload.created_at || "",
+      };
+    }
+
+    function createMessage(role, content, renderMarkdown) {
+      const isUser = String(role || "").toLowerCase() === "user";
+      const message = document.createElement("article");
+      message.className = `msg ${isUser ? "msg-user" : "msg-agent"}`;
+
+      const label = document.createElement("div");
+      label.className = "msg-label";
+      label.textContent = isUser ? "User" : "Biomni";
+      message.appendChild(label);
+
+      const body = document.createElement("div");
+      body.className = "msg-content";
+      if (isUser) {
+        body.textContent = String(content || "");
+      } else {
+        body.innerHTML = renderMarkdown(String(content || ""));
+      }
+      message.appendChild(body);
+      return message;
+    }
+
+    function renderMeta(meta) {
+      const sharedDate = meta.sharedAt ? new Date(meta.sharedAt).toLocaleString() : "Unknown";
+      metaEl.innerHTML = `
+        <h2>${meta.title}</h2>
+        <p>Shared by <strong>${meta.sharedBy}</strong> on <strong>${sharedDate}</strong></p>
+      `;
+    }
+
+    async function loadSharedConversation() {
+      const token = getTokenFromUrl();
+      if (!token) {
+        statusEl.textContent = "Missing share token. Open this page via a generated share link.";
+        statusEl.classList.add("is-error");
+        return;
+      }
+
+      const renderMarkdown = await loadMarkdownRenderer();
+
+      try {
+        const response = await fetch(`/api/share/${encodeURIComponent(token)}`);
+        if (!response.ok) {
+          throw new Error(`Unable to load shared conversation (${response.status})`);
+        }
+
+        const payload = await response.json();
+        const messages = normalizePayloadMessages(payload);
+        const meta = normalizePayloadMeta(payload);
+        renderMeta(meta);
+
+        messagesEl.innerHTML = "";
+        messages.forEach((message) => {
+          messagesEl.appendChild(createMessage(message.role, message.content, renderMarkdown));
+        });
+
+        if (!messages.length) {
+          statusEl.textContent = "This shared conversation has no messages.";
+          return;
+        }
+
+        statusEl.textContent = "Read-only shared view.";
+        statusEl.classList.add("is-readonly");
+      } catch (error) {
+        statusEl.textContent = error.message || "Failed to load shared conversation.";
+        statusEl.classList.add("is-error");
+      }
+    }
+
+    loadSharedConversation();
+  </script>
+</body>
+</html>
