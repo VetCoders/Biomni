@@ -266,6 +266,9 @@ export function createChat({
     if (type === "start") {
       showThinking();
       setStatus("Agent is thinking...");
+      if (currentStream && data.conversation_id) {
+        currentStream.conversationId = data.conversation_id;
+      }
       return;
     }
 
@@ -341,7 +344,11 @@ export function createChat({
 
       stream.toolPanel?.removeIfEmpty();
       setStatus("Done.");
-      stream.resolve({ content: cleaned, toolSteps: stream.toolSteps });
+      stream.resolve({
+        content: cleaned,
+        toolSteps: stream.toolSteps,
+        conversationId: stream.conversationId || data.conversation_id || "",
+      });
       return;
     }
 
@@ -442,12 +449,11 @@ export function createChat({
       };
 
       try {
-        ws.send(
-          JSON.stringify({
-            text,
-            session_id: sessionId,
-          }),
-        );
+        const msg = { text };
+        if (sessionId && !sessionId.startsWith("local-")) {
+          msg.session_id = sessionId;
+        }
+        ws.send(JSON.stringify(msg));
       } catch (error) {
         failActiveStream(error);
       }

@@ -224,6 +224,10 @@ async def lifespan(_app: FastAPI):
     data_path = os.getenv("BIOMNI_PATH", str(PROJECT_ROOT / "data"))
     anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 
+    from app.auth import JWT_SECRET
+    if JWT_SECRET in ("change-this-in-production", "change-me-to-a-random-secret"):
+        logger.warning("JWT_SECRET_KEY is using a default value — set a real secret in .env")
+
     try:
         logger.info("Initializing Biomni A1 agent")
         from biomni.agent.a1 import A1
@@ -539,7 +543,25 @@ async def websocket_stream(websocket: WebSocket) -> None:
             start = time.perf_counter()
 
             try:
-                for step in agent.go_stream(query_text):
+                queue: asyncio.Queue[dict[str, Any] | None] = asyncio.Queue()
+
+                def _run_stream() -> None:
+                    try:
+                        for step in agent.go_stream(query_text):
+                            queue.put_nowait(step)
+                        queue.put_nowait(None)  # sentinel
+                    except Exception as exc:
+                        queue.put_nowait({"__error__": str(exc)})
+
+                stream_task = asyncio.get_event_loop().run_in_executor(None, _run_stream)
+
+                while True:
+                    step = await queue.get()
+                    if step is None:
+                        break
+                    if "__error__" in step:
+                        raise RuntimeError(step["__error__"])
+
                     step_count += 1
                     parsed = _parse_stream_output(step.get("output", ""))
                     step_tool_names = [tool["name"] for tool in parsed["tool_calls"]]
@@ -564,7 +586,8 @@ async def websocket_stream(websocket: WebSocket) -> None:
                             query_id=query_id,
                         ),
                     )
-                    await asyncio.sleep(0)
+
+                await stream_task
             except Exception as exc:
                 await _ws_send(
                     websocket,

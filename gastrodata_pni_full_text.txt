@@ -1,0 +1,441 @@
+Impact of prognostic nutritional index on oncological outcomes and mortality among advanced gastric cancer patients: European GASTRODATA registry analysis
+
+Corresponding Author
+
+Zuzanna Pelc
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Correspondence
+
+Zuzanna Pelc, Department of Surgical Oncology, Medical University of Lublin, Radziwiłłowska 13 St., 20-080, Lublin, Poland.
+
+Email: [email protected]
+
+Contribution: Conceptualization, Methodology, Writing - review & editing, Writing - original draft, ​Investigation
+
+Katarzyna Sędłak
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Writing - original draft, Methodology, Data curation
+
+Radosław Mlak
+
+Department of Laboratory Diagnostics, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Data curation, Methodology, ​Investigation, Writing - original draft, Visualization
+
+Yutaka Endo
+
+Department of Surgery, The Ohio State University Wexner Medical Center and James Comprehensive Cancer Center, Columbus, Ohio, USA
+
+Department of Surgery and Transplant, University of Rochester Medical Center, Rochester, New York, USA
+
+Contribution: Conceptualization, Project administration, Methodology, Writing - review & editing, Visualization, Formal analysis
+
+Ines Gockel
+
+Department of Visceral, Transplant, Thoracic and Vascular Surgery, University Hospital of Leipzig, Leipzig, Germany
+
+Contribution: Conceptualization, Writing - review & editing, Methodology, Data curation, Supervision
+
+Johanna van Sandick
+
+Department of Surgical Oncology, The Netherlands Cancer Institute—Antoni Van Leeuwenhoek Hospital, Amsterdam, Netherlands
+
+Contribution: Conceptualization, Methodology, Writing - review & editing, Supervision
+
+Gian Luca Baiocchi
+
+Department of Clinical and Experimental Sciences, Surgical Clinic, and Third Division of General Surgery, University of Brescia, Spedali Civili Di Brescia, Brescia, Italy
+
+Contribution: Supervision, Methodology, Conceptualization, Data curation, Writing - review & editing
+
+Bas Wijnhoven
+
+Department of General Surgery, Erasmus Medical Center, Rotterdam, Netherlands
+
+Contribution: Writing - review & editing, Supervision, Methodology, Conceptualization
+
+Suzanne Gisbertz
+
+Department of Surgery, Amsterdam UMC Location University of Amsterdam, Amsterdam, Netherlands
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Manuel Pera
+
+Department of Digestive Surgery, Hospital Universitario Del Mar, Barcelona, Spain
+
+Contribution: Supervision, Writing - review & editing, Methodology, Conceptualization
+
+Paolo Morgagni
+
+Department of General Surgery, Morgagni-Pierantoni Hospital, Forlì, Italy
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing, Software
+
+Massimo Framarini
+
+Department of General Surgery, Morgagni-Pierantoni Hospital, Forlì, Italy
+
+Contribution: Writing - review & editing, Project administration, Supervision, Conceptualization
+
+Arnulf Hoelscher
+
+Contilia Center for Esophageal Diseases, Elisabeth Hospital, Essen, Germany
+
+Contribution: Conceptualization, Writing - review & editing, ​Investigation, Supervision
+
+Stefan Moenig
+
+Geneva University Hospital, Geneva, Switzerland
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Piotr Kołodziejczyk
+
+Department of Surgery, Jagiellonian University Medical College, Kraków, Poland
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Guillaume Piessen
+
+Department of Digestive and Oncological Surgery, University Lille and Claude Huriez University Hospital, Lille, France
+
+Contribution: Writing - review & editing, Supervision, Methodology, Conceptualization
+
+Clarisse Eveno
+
+Department of Digestive and Oncological Surgery, University Lille and Claude Huriez University Hospital, Lille, France
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Paulo Matos da Costa
+
+Faculdade de Medicina da Universidade de Lisboa, Lisboa, Portugal
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Cara Baker
+
+Department of Upper Gastrointestinal and General Surgery, Guy's and St Thomas' Hospital, London, UK
+
+Contribution: Writing - review & editing, Data curation, Methodology, ​Investigation, Conceptualization, Project administration
+
+Andrew Davies
+
+Department of Upper Gastrointestinal and General Surgery, Guy's and St Thomas' Hospital, London, UK
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+William Allum
+
+Department of Surgery, Royal Marsden NHS Foundation Trust, London, UK
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Uberto Fumagalli Romario
+
+Digestive Surgery, European Institute of Oncology, IRCCS, Milan, Italy
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Ricardo Rosati
+
+Department of Gastrointestinal Surgery, IRCCS San Raffaele Hospital Research Institute, Milan, Italy
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Daniel Reim
+
+Department of Surgery, TUM School of Medicine and Health, Technical University of Munich, Munich, Germany
+
+Contribution: Writing - review & editing, Supervision, Conceptualization, Data curation
+
+Lucio Lara Santos
+
+Department of Surgical Oncology, Experimental Pathology and Therapeutics Group, Portuguese Institute of Oncology, Porto, Portugal
+
+Contribution: Conceptualization, Data curation, Writing - review & editing, Supervision, ​Investigation
+
+Domenico D'ugo
+
+Department of General Surgery, Fondazione Policlinico Gemelli, Rome, Italy
+
+Contribution: ​Investigation, Supervision, Writing - review & editing, Data curation
+
+Giovanni de Manzoni
+
+Department of Surgery, General and Upper G.I. Surgery Division, University of Verona, Verona, Italy
+
+Contribution: Data curation, Methodology, Project administration, Writing - review & editing, Supervision
+
+Wojciech Kielan
+
+University Centre of General and Oncological Surgery, Medical University, Wroclaw, Poland
+
+Contribution: Writing - review & editing, Supervision, Methodology, Formal analysis
+
+Paul Schneider
+
+Department of Infectious Diseases and Pulmonary Medicine, Charité-Universitätsmedizin Berlin, Berlin, Germany
+
+Contribution: Methodology, Conceptualization, Supervision, Writing - review & editing
+
+Timothy M. Pawlik
+
+Department of Surgery, The Ohio State University Wexner Medical Center and James Comprehensive Cancer Center, Columbus, Ohio, USA
+
+Contribution: Writing - review & editing, Supervision, Conceptualization, Writing - original draft
+
+Wojciech Polkowski
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Writing - review & editing, Writing - original draft, Methodology, Data curation
+
+Karol Rawicz-Pruszyński
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Data curation, Writing - original draft, Writing - review & editing, Supervision, Methodology, Visualization, Formal analysis, Resources
+
+Corresponding Author
+
+Zuzanna Pelc
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Correspondence
+
+Zuzanna Pelc, Department of Surgical Oncology, Medical University of Lublin, Radziwiłłowska 13 St., 20-080, Lublin, Poland.
+
+Email: [email protected]
+
+Contribution: Conceptualization, Methodology, Writing - review & editing, Writing - original draft, ​Investigation
+
+Katarzyna Sędłak
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Writing - original draft, Methodology, Data curation
+
+Radosław Mlak
+
+Department of Laboratory Diagnostics, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Data curation, Methodology, ​Investigation, Writing - original draft, Visualization
+
+Yutaka Endo
+
+Department of Surgery, The Ohio State University Wexner Medical Center and James Comprehensive Cancer Center, Columbus, Ohio, USA
+
+Department of Surgery and Transplant, University of Rochester Medical Center, Rochester, New York, USA
+
+Contribution: Conceptualization, Project administration, Methodology, Writing - review & editing, Visualization, Formal analysis
+
+Ines Gockel
+
+Department of Visceral, Transplant, Thoracic and Vascular Surgery, University Hospital of Leipzig, Leipzig, Germany
+
+Contribution: Conceptualization, Writing - review & editing, Methodology, Data curation, Supervision
+
+Johanna van Sandick
+
+Department of Surgical Oncology, The Netherlands Cancer Institute—Antoni Van Leeuwenhoek Hospital, Amsterdam, Netherlands
+
+Contribution: Conceptualization, Methodology, Writing - review & editing, Supervision
+
+Gian Luca Baiocchi
+
+Department of Clinical and Experimental Sciences, Surgical Clinic, and Third Division of General Surgery, University of Brescia, Spedali Civili Di Brescia, Brescia, Italy
+
+Contribution: Supervision, Methodology, Conceptualization, Data curation, Writing - review & editing
+
+Bas Wijnhoven
+
+Department of General Surgery, Erasmus Medical Center, Rotterdam, Netherlands
+
+Contribution: Writing - review & editing, Supervision, Methodology, Conceptualization
+
+Suzanne Gisbertz
+
+Department of Surgery, Amsterdam UMC Location University of Amsterdam, Amsterdam, Netherlands
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Manuel Pera
+
+Department of Digestive Surgery, Hospital Universitario Del Mar, Barcelona, Spain
+
+Contribution: Supervision, Writing - review & editing, Methodology, Conceptualization
+
+Paolo Morgagni
+
+Department of General Surgery, Morgagni-Pierantoni Hospital, Forlì, Italy
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing, Software
+
+Massimo Framarini
+
+Department of General Surgery, Morgagni-Pierantoni Hospital, Forlì, Italy
+
+Contribution: Writing - review & editing, Project administration, Supervision, Conceptualization
+
+Arnulf Hoelscher
+
+Contilia Center for Esophageal Diseases, Elisabeth Hospital, Essen, Germany
+
+Contribution: Conceptualization, Writing - review & editing, ​Investigation, Supervision
+
+Stefan Moenig
+
+Geneva University Hospital, Geneva, Switzerland
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Piotr Kołodziejczyk
+
+Department of Surgery, Jagiellonian University Medical College, Kraków, Poland
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Guillaume Piessen
+
+Department of Digestive and Oncological Surgery, University Lille and Claude Huriez University Hospital, Lille, France
+
+Contribution: Writing - review & editing, Supervision, Methodology, Conceptualization
+
+Clarisse Eveno
+
+Department of Digestive and Oncological Surgery, University Lille and Claude Huriez University Hospital, Lille, France
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Paulo Matos da Costa
+
+Faculdade de Medicina da Universidade de Lisboa, Lisboa, Portugal
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Cara Baker
+
+Department of Upper Gastrointestinal and General Surgery, Guy's and St Thomas' Hospital, London, UK
+
+Contribution: Writing - review & editing, Data curation, Methodology, ​Investigation, Conceptualization, Project administration
+
+Andrew Davies
+
+Department of Upper Gastrointestinal and General Surgery, Guy's and St Thomas' Hospital, London, UK
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+William Allum
+
+Department of Surgery, Royal Marsden NHS Foundation Trust, London, UK
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Uberto Fumagalli Romario
+
+Digestive Surgery, European Institute of Oncology, IRCCS, Milan, Italy
+
+Contribution: Methodology, Supervision, Writing - review & editing, Conceptualization
+
+Ricardo Rosati
+
+Department of Gastrointestinal Surgery, IRCCS San Raffaele Hospital Research Institute, Milan, Italy
+
+Contribution: Conceptualization, Methodology, Supervision, Writing - review & editing
+
+Daniel Reim
+
+Department of Surgery, TUM School of Medicine and Health, Technical University of Munich, Munich, Germany
+
+Contribution: Writing - review & editing, Supervision, Conceptualization, Data curation
+
+Lucio Lara Santos
+
+Department of Surgical Oncology, Experimental Pathology and Therapeutics Group, Portuguese Institute of Oncology, Porto, Portugal
+
+Contribution: Conceptualization, Data curation, Writing - review & editing, Supervision, ​Investigation
+
+Domenico D'ugo
+
+Department of General Surgery, Fondazione Policlinico Gemelli, Rome, Italy
+
+Contribution: ​Investigation, Supervision, Writing - review & editing, Data curation
+
+Giovanni de Manzoni
+
+Department of Surgery, General and Upper G.I. Surgery Division, University of Verona, Verona, Italy
+
+Contribution: Data curation, Methodology, Project administration, Writing - review & editing, Supervision
+
+Wojciech Kielan
+
+University Centre of General and Oncological Surgery, Medical University, Wroclaw, Poland
+
+Contribution: Writing - review & editing, Supervision, Methodology, Formal analysis
+
+Paul Schneider
+
+Department of Infectious Diseases and Pulmonary Medicine, Charité-Universitätsmedizin Berlin, Berlin, Germany
+
+Contribution: Methodology, Conceptualization, Supervision, Writing - review & editing
+
+Timothy M. Pawlik
+
+Department of Surgery, The Ohio State University Wexner Medical Center and James Comprehensive Cancer Center, Columbus, Ohio, USA
+
+Contribution: Writing - review & editing, Supervision, Conceptualization, Writing - original draft
+
+Wojciech Polkowski
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Writing - review & editing, Writing - original draft, Methodology, Data curation
+
+Karol Rawicz-Pruszyński
+
+Department of Surgical Oncology, Medical University of Lublin, Lublin, Poland
+
+Contribution: Conceptualization, Data curation, Writing - original draft, Writing - review & editing, Supervision, Methodology, Visualization, Formal analysis, Resources
+
+Abstract
+
+While Prognostic Nutritional Index (PNI) is an established predictor of outcomes in Asian gastric cancer (GC) patients, data among Western populations are limited. This study assessed the predictive value of PNI in European GC patients undergoing multimodal treatment. Data from GASTRODATA, the largest European repository of GC patients undergoing gastrectomy, were collected between 2017 and 2022. The primary outcome was textbook outcome (TO) achievement, and the secondary was 90-day mortality. PNI was calculated one day before surgery, with a cut-off of 45.5 based on ROC analysis. Among 721 patients included 60.7% were men. Most patients had advanced tumors (cT3-4 = 75.2%) and metastatic lymph nodes (57.7%). Neoadjuvant chemotherapy (NAC) was administered to 46.7% of patients, and 32.9% received adjuvant chemotherapy. Median PNI was 49.5 (IQR 45.0–56.4). Low PNI was present among 30% of patients and was associated with decreased odds of TO achievement (OR = 0.57, 95% CI 0.37–0.89), higher 90-day mortality (OR = 4.99, 95% CI 2.32–10.73). NAC administration was associated with lower morbidity risk (OR = 0.56, p = 0.0408), and low PNI was a predictor of receiving AC (p = 0.0005). PNI was a valuable predictor for oncological outcomes and morbidity among European GC patients undergoing multimodal. While low PNI was associated with decreased odds of TO achievement and increased risk of 90-day mortality, further prospective and nutritional intervention studies are warranted to standardize the PNI threshold and improve its clinical applicability.
+
+What's New?
+
+Prognostic nutritional index (PNI), which relies on peripheral lymphocyte counts and serum albumin levels, is a validated marker of nutritional and inflammatory status. However, while an established predictor of morbidity following gastrectomy, the relevance of PNI in predicting gastric cancer outcome and mortality remains unknown. The present study evaluated PNI in European patients with advanced gastric cancer who underwent multimodal treatment. Low PNI was found to be strongly associated with increased 90-day mortality and adverse postoperative outcomes. The findings warrant further investigation of PNI for identifying gastric cancer patients who may benefit from individualized preoperative nutritional interventions.
+
+CONFLICT OF INTEREST STATEMENT
+
+Suzanne Gisbertz declares being a consultant for J&J, Medicaroid, and Olympus, outside of this study. The other authors do not have a conflict of interest.
+
+Open Research
+
+DATA AVAILABILITY STATEMENT
+
+The data that support the findings of this study are available from the GASTRODATA registry. Access to the dataset can be requested from the corresponding author upon reasonable request and approval from the respective participating institutions.
+
+Supporting Information
+
+DATA S1. Supporting information.
+
+Please note: The publisher is not responsible for the content or functionality of any supporting information supplied by the authors. Any queries (other than missing content) should be directed to the corresponding author for the article.
+
+REFERENCES
+
+Early View
+
+Online Version of Record before inclusion in an issue
+
+References
+
+Related
+
+Information

@@ -252,11 +252,7 @@ async function loadCapabilities() {
   if (!elements.capabilitiesGrid) return;
 
   try {
-    const response = await fetch("/api/tools");
-    if (!response.ok) {
-      throw new Error(`Tools endpoint unavailable (${response.status})`);
-    }
-    const payload = await response.json();
+    const payload = await apiFetch("/api/tools");
     renderCapabilities(extractCapabilityCategories(payload));
   } catch {
     renderCapabilities(FEATURE_FALLBACK_CATEGORIES);
@@ -550,6 +546,21 @@ async function sendPrompt(prompt) {
       sessionId: conversation.id,
     });
 
+    // Update local conversation ID with server-assigned one
+    if (stream.conversationId && conversation.id !== stream.conversationId) {
+      const serverConv = normalizeConversation({
+        ...conversation,
+        id: stream.conversationId,
+        isLocal: false,
+      });
+      const others = state.conversations.filter(
+        (c) => c.id !== conversation.id && c.id !== stream.conversationId,
+      );
+      const conversations = [serverConv, ...others];
+      setState({ conversations, currentConversation: serverConv });
+      sidebar.setConversations(conversations, serverConv.id);
+    }
+
     if (!stream.content) {
       return true;
     }
@@ -568,7 +579,7 @@ async function sendPrompt(prompt) {
     updateConversationAfterMessage(state.currentConversation, prompt, 1);
     return true;
   } catch (error) {
-    chat.appendErrorMessage(error.message || "Streaming failed.");
+    // Error message already displayed by WebSocket handler — just update status
     chat.setStatus("Error.");
     return false;
   }
