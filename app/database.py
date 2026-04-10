@@ -91,6 +91,9 @@ async def get_connection() -> Any:
     conn.row_factory = aiosqlite.Row
     await conn.execute("PRAGMA foreign_keys = ON")
     await conn.execute("PRAGMA journal_mode = WAL")
+    # Prevent "database is locked" errors under concurrent WebSocket load
+    # by waiting up to 5 seconds for the write lock instead of failing immediately.
+    await conn.execute("PRAGMA busy_timeout = 5000")
     try:
         yield conn
     finally:
@@ -363,9 +366,22 @@ async def delete_conversation_for_user(conversation_id: str, user_id: str) -> bo
 
 
 async def ensure_share_token_for_conversation(conversation_id: str, user_id: str) -> str | None:
-    share_token = _new_share_token()
+    # Return the existing share token if one already exists, rather than
+    # regenerating on every call (which would break previously shared URLs).
     async with get_connection() as conn:
         cursor = await conn.execute(
+            "SELECT share_token FROM conversations WHERE id = ? AND user_id = ? LIMIT 1",
+            (conversation_id, user_id),
+        )
+        row = await cursor.fetchone()
+        if row is None:
+            return None
+        existing_token = dict(row).get("share_token")
+        if existing_token and existing_token.strip():
+            return existing_token
+        # Only generate a new token when the conversation has none.
+        share_token = _new_share_token()
+        await conn.execute(
             """
             UPDATE conversations
             SET share_token = ?, updated_at = ?
@@ -374,8 +390,6 @@ async def ensure_share_token_for_conversation(conversation_id: str, user_id: str
             (share_token, utc_now_iso(), conversation_id, user_id),
         )
         await conn.commit()
-    if cursor.rowcount <= 0:
-        return None
     return share_token
 
 
